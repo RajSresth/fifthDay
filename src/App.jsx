@@ -3,11 +3,18 @@ import { useReducer } from 'react'
 import "./App.css"
 
 const App = () => {
-  // create an initial value object
-  const initialValue={
-    count:0
+  // create an initial value
+  const initialValue=0
+
+
+  // create an init function which returns an object
+  function init(initialValue){
+      return {count:initialValue}
   }
+
   function reducer(state,action) {
+    console.log(state)
+    console.log(action)
     switch (action.type) {
       case 'inc':
         return {count:state.count+1}
@@ -32,7 +39,7 @@ const App = () => {
   }
 
   // use Reducer Hook
-  const [state,dispatch]=useReducer(reducer,initialValue)
+  const [state,dispatch]=useReducer(reducer,initialValue,init)
   return (
     <div className='flex flex-col items-center gap-11 text-[5rem]'>
       <h1>Count: {state.count}</h1>
